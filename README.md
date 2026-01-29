@@ -8,7 +8,15 @@
   <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
   <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
   <img src="https://img.shields.io/badge/macOS-13.0%2B-brightgreen" alt="macOS 13.0+">
-  <img src="https://img.shields.io/badge/Swift-5-orange" alt="Swift 5">
+  <a href="https://github.com/n0an/hyperkey/releases/latest"><img src="https://img.shields.io/github/v/release/n0an/hyperkey" alt="Release"></a>
+  <img src="https://img.shields.io/github/downloads/n0an/hyperkey/total" alt="Downloads">
+  <img src="https://img.shields.io/github/stars/n0an/hyperkey" alt="Stars">
+</p>
+
+<p align="center">
+  <a href="https://github.com/n0an/hyperkey/releases/latest/download/HyperKey.dmg">
+    <img src="https://img.shields.io/badge/Download-Latest%20Version-blue?style=for-the-badge&logo=apple" alt="Download">
+  </a>
 </p>
 
 A lightweight macOS menu bar app that transforms your Caps Lock key into a powerful "Hyper" key.
