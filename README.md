@@ -59,6 +59,20 @@ Once HyperKey is running, you can assign Hyper shortcuts in:
 2. Build and run (Cmd+R)
 3. Grant Accessibility permissions in System Settings → Privacy & Security → Accessibility
 
+### Creating a DMG
+
+To build a distributable DMG:
+
+```bash
+# Optional: install create-dmg for prettier DMGs
+brew install create-dmg
+
+# Build the DMG
+./scripts/build-dmg.sh
+```
+
+The DMG will be created at `build/HyperKey.dmg`.
+
 ## How It Works
 
 HyperKey uses IOKit HID to detect physical Caps Lock press/release events, and CGEventTap to:
