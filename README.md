@@ -17,6 +17,19 @@ A lightweight macOS menu bar app that transforms your Caps Lock key into a power
 
 When you press Caps Lock, HyperKey sends **Cmd+Ctrl+Opt+Shift** simultaneously. This combination is virtually never used by any application, giving you a clean namespace for custom keyboard shortcuts.
 
+## Installation
+
+### Homebrew (recommended)
+
+```bash
+brew tap n0an/tap
+brew install --cask hyperkey
+```
+
+### Manual Download
+
+Download the latest DMG from [Releases](https://github.com/n0an/hyperkey/releases).
+
 ## Features
 
 - **Caps Lock → Hyper** - Hold Caps Lock to activate Cmd+Ctrl+Opt+Shift
