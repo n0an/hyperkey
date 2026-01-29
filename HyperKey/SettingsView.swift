@@ -2,16 +2,12 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("hyperKeyEnabled") private var hyperKeyEnabled = true
-    @AppStorage("capsLockToEscape") private var capsLockToEscape = false
 
     var body: some View {
         Form {
             Section {
                 Toggle("Enable HyperKey", isOn: $hyperKeyEnabled)
                     .help("Remap Caps Lock to Hyper (Cmd+Ctrl+Opt+Shift)")
-
-                Toggle("Caps Lock → Escape (when tapped alone)", isOn: $capsLockToEscape)
-                    .help("Send Escape key when Caps Lock is tapped without other keys")
             }
 
             Section {

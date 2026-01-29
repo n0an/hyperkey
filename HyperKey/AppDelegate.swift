@@ -26,12 +26,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         menu.addItem(NSMenuItem.separator())
 
-        let capsLockToEscapeItem = NSMenuItem(title: "Caps Lock → Escape (when tapped alone)", action: #selector(toggleCapsLockToEscape), keyEquivalent: "")
-        capsLockToEscapeItem.state = UserDefaults.standard.bool(forKey: "capsLockToEscape") ? .on : .off
-        menu.addItem(capsLockToEscapeItem)
-
-        menu.addItem(NSMenuItem.separator())
-
         menu.addItem(NSMenuItem(title: "Check Accessibility...", action: #selector(checkAccessibility), keyEquivalent: ""))
 
         menu.addItem(NSMenuItem.separator())
@@ -69,13 +63,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             keyEventManager.stop()
         }
-    }
-
-    @objc private func toggleCapsLockToEscape(_ sender: NSMenuItem) {
-        let newState = sender.state == .off
-        sender.state = newState ? .on : .off
-        UserDefaults.standard.set(newState, forKey: "capsLockToEscape")
-        keyEventManager.capsLockToEscape = newState
     }
 
     @objc private func checkAccessibility() {

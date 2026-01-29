@@ -11,3 +11,6 @@ xcuserdata/
 # SwiftPM
 .build/
 .swiftpm/
+
+# Profiling
+*.profraw

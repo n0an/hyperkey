@@ -12,14 +12,6 @@ class KeyEventManager {
     private var runLoopSource: CFRunLoopSource?
     private var hidManager: IOHIDManager?
     private var capsLockPressed = false
-    private var otherKeyPressed = false
-    private var capsLockPressTime: Date?
-    private let capsLockKeyCode = CGKeyCode(57)
-
-    var capsLockToEscape: Bool {
-        get { UserDefaults.standard.bool(forKey: "capsLockToEscape") }
-        set { UserDefaults.standard.set(newValue, forKey: "capsLockToEscape") }
-    }
 
     private let hyperModifiers: CGEventFlags = [.maskCommand, .maskControl, .maskAlternate, .maskShift]
 
@@ -133,9 +125,6 @@ class KeyEventManager {
 
         logger.debug("Caps Lock PRESSED (HID) - activating Hyper mode")
         capsLockPressed = true
-        otherKeyPressed = false
-        capsLockPressTime = Date()
-
         postHyperModifiers(down: true)
     }
 
@@ -144,22 +133,7 @@ class KeyEventManager {
 
         logger.debug("Caps Lock RELEASED (HID) - deactivating Hyper mode")
         capsLockPressed = false
-
         postHyperModifiers(down: false)
-
-        // If no other key was pressed and caps lock to escape is enabled, send Escape
-        if !otherKeyPressed && capsLockToEscape {
-            if let pressTime = capsLockPressTime {
-                let elapsed = Date().timeIntervalSince(pressTime)
-                if elapsed < 0.3 {
-                    logger.debug("Sending Escape key (tap duration: \(elapsed)s)")
-                    postEscapeKey()
-                }
-            }
-        }
-
-        otherKeyPressed = false
-        capsLockPressTime = nil
     }
 
     private func handleEvent(proxy: CGEventTapProxy, type: CGEventType, event: CGEvent) -> Unmanaged<CGEvent>? {
@@ -179,16 +153,12 @@ class KeyEventManager {
             return nil
         }
 
-        // Track if other keys are pressed while Caps Lock is held
-        if capsLockPressed {
-            if type == .keyDown {
-                logger.debug("Other key pressed while Caps Lock held (keyCode: \(keyCode))")
-                otherKeyPressed = true
-                // Add hyper modifiers to the key event
-                var newFlags = event.flags
-                newFlags.insert(hyperModifiers)
-                event.flags = newFlags
-            }
+        // Add hyper modifiers to key events while Caps Lock is held
+        if capsLockPressed && type == .keyDown {
+            logger.debug("Key pressed while Caps Lock held (keyCode: \(keyCode))")
+            var newFlags = event.flags
+            newFlags.insert(hyperModifiers)
+            event.flags = newFlags
         }
 
         return Unmanaged.passRetained(event)
@@ -206,19 +176,6 @@ class KeyEventManager {
             event.type = .flagsChanged
             event.flags = flags
             event.post(tap: .cgSessionEventTap)
-        }
-    }
-
-    private func postEscapeKey() {
-        guard let source = CGEventSource(stateID: .hidSystemState) else { return }
-
-        // Key code for Escape is 53
-        if let keyDown = CGEvent(keyboardEventSource: source, virtualKey: 53, keyDown: true) {
-            keyDown.post(tap: .cgSessionEventTap)
-        }
-
-        if let keyUp = CGEvent(keyboardEventSource: source, virtualKey: 53, keyDown: false) {
-            keyUp.post(tap: .cgSessionEventTap)
         }
     }
 
