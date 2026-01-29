@@ -1,5 +1,9 @@
 # HyperKey
 
+<p align="center">
+  <img src="icon.png" width="128" height="128" alt="HyperKey Icon">
+</p>
+
 A lightweight macOS menu bar app that transforms your Caps Lock key into a powerful "Hyper" key.
 
 ## What is a Hyper Key?
