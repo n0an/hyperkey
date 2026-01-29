@@ -4,6 +4,13 @@
   <img src="icon.png" width="128" height="128" alt="HyperKey Icon">
 </p>
 
+<p align="center">
+  <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
+  <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/macOS-13.0%2B-brightgreen" alt="macOS 13.0+">
+  <img src="https://img.shields.io/badge/Swift-5-orange" alt="Swift 5">
+</p>
+
 A lightweight macOS menu bar app that transforms your Caps Lock key into a powerful "Hyper" key.
 
 ## What is a Hyper Key?
