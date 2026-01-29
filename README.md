@@ -23,7 +23,7 @@ When you press Caps Lock, HyperKey sends **Cmd+Ctrl+Opt+Shift** simultaneously. 
 
 ```bash
 brew tap n0an/tap
-brew install --cask hyperkey
+brew install --cask hyperkey-app
 ```
 
 ### Manual Download
