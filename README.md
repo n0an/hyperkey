@@ -1,8 +1,8 @@
-# HyperKey
-
 <p align="center">
   <img src="icon.png" width="128" height="128" alt="HyperKey Icon">
 </p>
+
+<h1 align="center">HyperKey</h1>
 
 <p align="center">
   <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
