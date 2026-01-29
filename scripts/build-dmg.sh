@@ -11,6 +11,9 @@ DMG_DIR="$BUILD_DIR/dmg"
 APP_PATH="$DMG_DIR/$APP_NAME.app"
 DMG_PATH="$BUILD_DIR/$APP_NAME.dmg"
 
+# Notarization credentials (store in keychain with: xcrun notarytool store-credentials "hyperkey-notarize")
+NOTARIZE_PROFILE="hyperkey-notarize"
+
 echo "🔨 Building $APP_NAME..."
 
 # Clean previous build
@@ -62,5 +65,25 @@ fi
 
 echo ""
 echo "✅ DMG created: $DMG_PATH"
+echo ""
+
+# Notarization
+if xcrun notarytool history --keychain-profile "$NOTARIZE_PROFILE" &> /dev/null; then
+    echo "🔏 Notarizing DMG..."
+    xcrun notarytool submit "$DMG_PATH" \
+        --keychain-profile "$NOTARIZE_PROFILE" \
+        --wait
+
+    echo "📎 Stapling notarization ticket..."
+    xcrun stapler staple "$DMG_PATH"
+
+    echo ""
+    echo "✅ Notarization complete!"
+else
+    echo "⚠️  Notarization skipped (keychain profile '$NOTARIZE_PROFILE' not found)"
+    echo "   To enable notarization, run:"
+    echo "   xcrun notarytool store-credentials \"$NOTARIZE_PROFILE\" --apple-id YOUR_EMAIL --team-id YOUR_TEAM_ID --password YOUR_APP_SPECIFIC_PASSWORD"
+fi
+
 echo ""
 echo "📏 Size: $(du -h "$DMG_PATH" | cut -f1)"
