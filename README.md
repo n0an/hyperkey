@@ -10,11 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="https://hyperkey.one"><img src="https://img.shields.io/badge/website-hyperkey.one-blueviolet" alt="Website"></a>
-  <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
   <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
   <img src="https://img.shields.io/badge/macOS-13.0%2B-brightgreen" alt="macOS 13.0+">
   <a href="https://github.com/n0an/hyperkey/releases/latest"><img src="https://img.shields.io/github/v/release/n0an/hyperkey" alt="Release"></a>
+  <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
   <img src="https://img.shields.io/github/downloads/n0an/hyperkey/total" alt="Downloads">
   <img src="https://img.shields.io/github/stars/n0an/hyperkey" alt="Stars">
 </p>
