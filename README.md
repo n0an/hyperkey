@@ -5,7 +5,8 @@
 <h1 align="center">HyperKey</h1>
 
 <p align="center">
-  <strong>AI-powered Hacker News reader for iOS and macOS</strong>
+  <strong>A lightweight macOS menu bar app that transforms your Caps Lock key into a powerful "Hyper" key.
+</strong>
 </p>
 
 <p align="center">
