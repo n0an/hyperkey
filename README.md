@@ -5,6 +5,10 @@
 <h1 align="center">HyperKey</h1>
 
 <p align="center">
+  <strong>AI-powered Hacker News reader for iOS and macOS</strong>
+</p>
+
+<p align="center">
   <a href="https://hyperkey.one"><img src="https://img.shields.io/badge/website-hyperkey.one-blueviolet" alt="Website"></a>
   <a href="https://github.com/n0an/hyperkey/blob/main/LICENSE"><img src="https://img.shields.io/github/license/n0an/hyperkey" alt="License"></a>
   <img src="https://img.shields.io/badge/platform-macOS-blue" alt="Platform">
@@ -20,7 +24,7 @@
   </a>
 </p>
 
-A lightweight macOS menu bar app that transforms your Caps Lock key into a powerful "Hyper" key.
+---
 
 ## What is a Hyper Key?
 
