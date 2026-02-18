@@ -36,27 +36,33 @@ xcodebuild -exportArchive \
 
 echo "📦 Creating DMG..."
 
-# Check if create-dmg is installed
+ICON_PATH="$APP_PATH/Contents/Resources/AppIcon.icns"
+
 if command -v create-dmg &> /dev/null; then
     create-dmg \
         --volname "$APP_NAME" \
-        --volicon "$PROJECT_DIR/icon.png" \
+        ${ICON_PATH:+--volicon "$ICON_PATH"} \
         --window-pos 200 120 \
-        --window-size 600 400 \
+        --window-size 660 400 \
         --icon-size 100 \
-        --icon "$APP_NAME.app" 150 185 \
-        --app-drop-link 450 185 \
+        --icon "$APP_NAME.app" 180 190 \
+        --app-drop-link 480 190 \
         --hide-extension "$APP_NAME.app" \
+        --no-internet-enable \
         "$DMG_PATH" \
-        "$DMG_DIR/$APP_NAME.app"
+        "$APP_PATH" || true
+
+    if [ ! -f "$DMG_PATH" ]; then
+        echo "create-dmg failed, falling back to hdiutil..."
+        ln -sf /Applications "$DMG_DIR/Applications"
+        hdiutil create -volname "$APP_NAME" -srcfolder "$DMG_DIR" -ov -format UDZO "$DMG_PATH"
+    fi
 else
     echo "⚠️  create-dmg not found, using hdiutil (basic DMG)"
-    echo "   Install create-dmg for prettier DMGs: brew install create-dmg"
+    echo "   Install for prettier DMGs: brew install create-dmg"
 
-    # Create Applications symlink
     ln -sf /Applications "$DMG_DIR/Applications"
 
-    # Create DMG with hdiutil
     hdiutil create -volname "$APP_NAME" \
         -srcfolder "$DMG_DIR" \
         -ov -format UDZO \
@@ -66,6 +72,17 @@ fi
 echo ""
 echo "✅ DMG created: $DMG_PATH"
 echo ""
+
+# Set app icon on the DMG file
+if command -v fileicon &> /dev/null; then
+    if [ -f "$ICON_PATH" ]; then
+        echo "🎨 Setting DMG icon..."
+        fileicon set "$DMG_PATH" "$ICON_PATH"
+    fi
+else
+    echo "⚠️  fileicon not found, DMG will have default icon"
+    echo "   Install for custom DMG icon: brew install fileicon"
+fi
 
 # Notarization
 if xcrun notarytool history --keychain-profile "$NOTARIZE_PROFILE" &> /dev/null; then
