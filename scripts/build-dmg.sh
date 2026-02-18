@@ -34,6 +34,9 @@ xcodebuild -exportArchive \
     -exportPath "$DMG_DIR" \
     -exportOptionsPlist "$PROJECT_DIR/scripts/ExportOptions.plist"
 
+# Remove export artifacts so only the .app ends up in the DMG
+rm -f "$DMG_DIR"/DistributionSummary.plist "$DMG_DIR"/ExportOptions.plist "$DMG_DIR"/Packaging.log
+
 echo "📦 Creating DMG..."
 
 ICON_PATH="$APP_PATH/Contents/Resources/AppIcon.icns"
